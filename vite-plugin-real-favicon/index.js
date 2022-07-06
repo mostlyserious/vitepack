@@ -61,7 +61,7 @@ module.exports = (options = {}) => {
                         }
                     } catch (error) {
                         if (error.code !== 'EEXIST') {
-                            config.logger.error(`vite-plugin-tinify: ${error.message}`);
+                            config.logger.error(`vite-plugin-real-favicon: ${error.message}`);
 
                             return;
                         }
@@ -110,7 +110,7 @@ module.exports = (options = {}) => {
                     }
                 });
             } catch (error) {
-                config.logger.error(`vite-plugin-tinify: ${error.message}`);
+                config.logger.error(`vite-plugin-real-favicon: ${error.message}`);
             }
         }
     };
