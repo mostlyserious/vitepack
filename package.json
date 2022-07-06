@@ -22,6 +22,7 @@
     "rfg-api": "^0.5.2",
     "tinify": "^1.6.1",
     "vite": "^v3.0.0-beta.6",
-    "vite-plugin-dev-manifest": "^1.0.7"
+    "vite-plugin-dev-manifest": "^1.0.7",
+    "vite-plugin-restart": "^0.1.1"
   }
 }
