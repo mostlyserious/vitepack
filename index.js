@@ -38,6 +38,7 @@ export default (args = {}, handler) => {
             outDir: args.outDir
         },
         server: {
+            host: process.env.APP_HOST ? process.env.APP_HOST : 'localhost',
             https: args.https ? args.https : (process.env.APP_URL.includes('https:') && fs.existsSync(pem) ? {
                 key: fs.readFileSync(`${__home}/.config/valet/Certificates/${process.env.APP_HOST}.key`),
                 cert: fs.readFileSync(`${__home}/.config/valet/Certificates/${process.env.APP_HOST}.crt`),
