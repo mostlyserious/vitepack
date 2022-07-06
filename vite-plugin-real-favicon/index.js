@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import axios from 'axios';
-import https from 'https';
-import crypto from 'crypto';
-import rfgApi from 'rfg-api';
-import AdmZip from 'adm-zip';
+const fs = require('fs');
+const path = require('path');
+const axios = require('axios');
+const https = require('https');
+const crypto = require('crypto');
+const rfgApi = require('rfg-api');
+const AdmZip = require('adm-zip');
 
 const __home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 const apikeypath = path.join(__home, '.realfavicon');

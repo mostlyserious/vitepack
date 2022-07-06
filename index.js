@@ -1,10 +1,10 @@
-import fs from 'fs';
-import dotenv from 'dotenv';
-import { defineConfig } from 'vite';
-import tinify from './vite-plugin-tinify';
-import viteRestart from 'vite-plugin-restart';
-import devManifest from 'vite-plugin-dev-manifest';
-import { svelte } from '@sveltejs/vite-plugin-svelte';
+const fs = require('fs');
+const dotenv = require('dotenv');
+const { defineConfig } = require('vite');
+const { default: tinify } = require('./vite-plugin-tinify');
+const { default: viteRestart } = require('vite-plugin-restart');
+const { default: devManifest } = require('vite-plugin-dev-manifest');
+const { svelte } = require('@sveltejs/vite-plugin-svelte');
 
 const __home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 const pem = `${__home}/.config/valet/CA/LaravelValetCASelfSigned.pem`;
