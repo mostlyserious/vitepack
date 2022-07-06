@@ -1,7 +1,7 @@
 const fs = require('fs');
 const dotenv = require('dotenv');
 const { defineConfig } = require('vite');
-const { default: tinify } = require('./vite-plugin-tinify');
+const tinify = require('./vite-plugin-tinify');
 const { default: viteRestart } = require('vite-plugin-restart');
 const { default: devManifest } = require('vite-plugin-dev-manifest');
 const { svelte } = require('@sveltejs/vite-plugin-svelte');
@@ -17,7 +17,7 @@ try {
     console.warn('No .env file');
 }
 
-export default (args = {}, handler) => {
+module.exports = (args = {}, handler) => {
     return handler(defineConfig({
         plugins: [
             viteRestart({

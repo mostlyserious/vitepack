@@ -18,7 +18,7 @@ if (process.env.REALFAVICON_KEY) {
     apiKey = fs.readFileSync(apikeypath, 'utf8').trim();
 }
 
-export default (options = {}) => {
+module.exports = (options = {}) => {
     let config,
         configContext;
 

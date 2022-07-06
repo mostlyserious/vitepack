@@ -6,7 +6,7 @@ const tinify = require('tinify');
 const __home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 const apikeypath = path.join(__home, '.tinypng');
 
-export default (options = {}) => {
+module.exports = (options = {}) => {
     const regex = /\.(png|jpe?g)$/;
 
     let config,
