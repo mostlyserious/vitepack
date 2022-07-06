@@ -1,0 +1,27 @@
+{
+  "name": "vitepack",
+  "version": "0.0.1",
+  "description": "🔄 Reasonable Vite config boilerplate.",
+  "repository": "corneliusio/vitepack",
+  "license": "MIT",
+  "author": {
+    "name": "Cornelius Ukena",
+    "email": "guy@cornelius.dev"
+  },
+  "keywords": [
+    "vite",
+    "boilerplate"
+  ],
+  "main": "index.js",
+  "dependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.49",
+    "adm-zip": "^0.5.9",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
+    "https": "^1.0.0",
+    "rfg-api": "^0.5.2",
+    "tinify": "^1.6.1",
+    "vite": "^v3.0.0-beta.6",
+    "vite-plugin-dev-manifest": "^1.0.7"
+  }
+}
