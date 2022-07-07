@@ -72,51 +72,52 @@ module.exports = (options = {}) => {
             }
 
             try {
+                const regex = /\.(xml|html|webmanifest$)$/;
+
                 let entries = await fetchFavicons(options.cache, ident, request);
 
-                entries = entries.forEach(entry => {
-                    const regex = /\.(xml|html|webmanifest$)$/;
-
-                    let entryHash = hash(entry.toString('utf8'), 8),
-                        hashedName = entry.name === 'html_code.html'
-                            ? 'markup.html'
-                            : entry.name.replace(/(\.[\w\d_-]+)$/i, `.${entryHash}$1`),
-                        hashedPath = `${config.build.assetsDir}/${hashedName}`;
-
+                entries = entries.map(entry => {
                     if (regex.test(entry.name)) {
-                        let data = entry.getData().toString('utf8')
-                            .replaceAll(path.resolve(process.cwd(), config.build.outDir), config.base)
-                            .replaceAll('//', '/');
+                        let data = updatePaths(entry.getData().toString('utf8'), config);
+
+                        entry.setData(Buffer.from(data));
+                    }
+
+                    entry.hash = hash(entry.getData(), 8);
+
+                    return entry;
+                });
+
+                entries = entries.map(entry => {
+                    if (regex.test(entry.name)) {
+                        let data = entry.getData().toString('utf8');
 
                         entries.forEach(item => {
                             const hashed = item.name.replace(
-                                /(\.[\w\d_-]+)$/i,
-                                `.${hash(item.toString('utf8'), 8)}$1`
+                                /(\.[\w\d_-]+)$/i, `.${item.hash}$1`
                             );
 
                             data = data.replace(item.name, `${config.build.assetsDir}/${hashed}`);
+
+                            entry.setData(data);
                         });
-
-                        entryHash = hash(data, 8);
-                        hashedName = entry.name === 'html_code.html'
-                            ? 'markup.html'
-                            : entry.name.replace(/(\.[\w\d_-]+)$/i, `.${entryHash}$1`);
-                        hashedPath = `${config.build.assetsDir}/${hashedName}`;
-
-                        bundler[hashedPath] = {
-                            fileName: hashedPath,
-                            name: hashedName,
-                            source: Buffer.from(data),
-                            type: 'asset'
-                        };
-                    } else {
-                        bundler[hashedPath] = {
-                            fileName: hashedPath,
-                            name: entry.name,
-                            source: entry.getData(),
-                            type: 'asset'
-                        };
                     }
+
+                    return entry;
+                });
+
+                entries.forEach(entry => {
+                    const hashedName = entry.name === 'html_code.html'
+                        ? 'markup.html'
+                        : entry.name.replace(/(\.[\w\d_-]+)$/i, `.${entry.hash}$1`);
+                    const hashedPath = `${config.build.assetsDir}/${hashedName}`;
+
+                    bundler[hashedPath] = {
+                        fileName: hashedPath,
+                        name: entry.name,
+                        source: entry.getData(),
+                        type: 'asset'
+                    };
                 });
             } catch (error) {
                 config.logger.error(`vite-plugin-real-favicon: ${error.message}`);
@@ -238,6 +239,12 @@ function normalizeDesignMasterPictures(design, configContext) {
     }
 
     return design;
+}
+
+function updatePaths(data, config) {
+    const systemPath = path.resolve(process.cwd(), config.build.outDir);
+
+    return data.replaceAll(systemPath, config.base).replaceAll('//', '/');
 }
 
 function hash(content, length = 40) {
