@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
+import eslint from 'vite-plugin-eslint';
 const { defineConfig } = require('vite');
 const tinify = require('./vite-plugin-tinify');
 const { default: svgo } = require('vite-svg-loader');
@@ -38,6 +39,7 @@ module.exports = (args = {}, handler) => {
         plugins: [
             restart({ restart: (args.watch ? args.watch : []) }),
             svgo({ defaultImport: 'url' }),
+            eslint({ cache: true }),
             devManifest(),
             tinify(),
             svelte()

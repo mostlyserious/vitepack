@@ -1,7 +1,9 @@
 {
+    "parser": "@babel/eslint-parser",
     "parserOptions": {
-        "parser": "babel-eslint",
         "sourceType": "module",
+        "requireConfigFile": false,
+        "allowImportExportEverywhere": true,
         "ecmaVersion": 12,
         "ecmaFeatures": {
             "impliedStrict": true
