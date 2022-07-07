@@ -75,12 +75,15 @@ module.exports = (options = {}) => {
                 let entries = await fetchFavicons(options.cache, ident, request);
 
                 entries = entries.forEach(entry => {
-                    const hashedName = entry.name !== 'html_code.html'
-                        ? entry.name.replace(/(\.[\w\d_-]+)$/i, `.${hash(entry.toString('utf8'), 8)}$1`)
-                        : 'markup.html';
-                    const hashedPath = `${config.build.assetsDir}/${hashedName}`;
+                    const regex = /\.(xml|html|webmanifest$)$/;
 
-                    if (entry.name === 'html_code.html') {
+                    let entryHash = hash(entry.toString('utf8'), 8),
+                        hashedName = entry.name === 'html_code.html'
+                            ? 'markup.html'
+                            : entry.name.replace(/(\.[\w\d_-]+)$/i, `.${entryHash}$1`),
+                        hashedPath = `${config.build.assetsDir}/${hashedName}`;
+
+                    if (regex.test(entry.name)) {
                         let data = entry.getData().toString('utf8')
                             .replaceAll(path.resolve(process.cwd(), config.build.outDir), config.base)
                             .replaceAll('//', '/');
@@ -94,9 +97,15 @@ module.exports = (options = {}) => {
                             data = data.replace(item.name, `${config.build.assetsDir}/${hashed}`);
                         });
 
+                        entryHash = hash(data, 8);
+                        hashedName = entry.name === 'html_code.html'
+                            ? 'markup.html'
+                            : entry.name.replace(/(\.[\w\d_-]+)$/i, `.${entryHash}$1`);
+                        hashedPath = `${config.build.assetsDir}/${hashedName}`;
+
                         bundler[hashedPath] = {
                             fileName: hashedPath,
-                            name: 'markup.html',
+                            name: hashedName,
                             source: Buffer.from(data),
                             type: 'asset'
                         };
