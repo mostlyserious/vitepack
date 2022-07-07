@@ -39,8 +39,8 @@ module.exports = (args = {}, handler) => {
         plugins: [
             restart({ restart: (args.watch ? args.watch : []) }),
             svgo({ defaultImport: 'url' }),
-            eslint({ cache: true }),
             devManifest(),
+            eslint(),
             tinify(),
             svelte()
         ],
