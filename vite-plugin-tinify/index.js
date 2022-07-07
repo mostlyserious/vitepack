@@ -5,6 +5,7 @@ const tinify = require('tinify');
 
 const __home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 const apikeypath = path.join(__home, '.tinypng');
+const NAME = 'tinify';
 
 module.exports = (options = {}) => {
     const regex = /\.(png|jpe?g)$/;
@@ -16,7 +17,7 @@ module.exports = (options = {}) => {
     options.cache = path.resolve(options.cache || '.cache/tinify');
 
     return {
-        name: 'vite-plugin-tinify',
+        name: NAME,
 
         configResolved(resolvedConfig) {
             config = resolvedConfig;
@@ -57,7 +58,7 @@ module.exports = (options = {}) => {
                         }
 
                         if (!apikey) {
-                            config.logger.error('vite-plugin-tinify: No API key provided for TinyPNG/TinyJPG. **Images not optimized**');
+                            config.logger.error(`${NAME}: No API key provided for TinyPNG/TinyJPG. **Images not optimized**`);
 
                             return;
                         }
@@ -73,7 +74,7 @@ module.exports = (options = {}) => {
                                 }
                             } catch (error) {
                                 if (error.code !== 'EEXIST') {
-                                    config.logger.error(`vite-plugin-tinify: ${error.message}`);
+                                    config.logger.error(`${NAME}: ${error.message}`);
 
                                     return;
                                 }

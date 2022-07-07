@@ -9,6 +9,7 @@ const AdmZip = require('adm-zip');
 const __home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 const apikeypath = path.join(__home, '.realfavicon');
 const rfg = rfgApi.init();
+const NAME = 'real-favicon';
 
 let apiKey;
 
@@ -25,7 +26,7 @@ module.exports = (options = {}) => {
     options.cache = path.resolve(options.cache || '.cache/favicon');
 
     return {
-        name: 'vite-plugin-real-favicon',
+        name: NAME,
 
         configResolved(resolvedConfig) {
             config = resolvedConfig;
@@ -43,7 +44,7 @@ module.exports = (options = {}) => {
             args.iconsPath = path.resolve(config.build.outDir);
 
             if (!args.apiKey) {
-                config.logger.error('vite-plugin-real-favicon: No API key provided for Real Favicon Generator.');
+                config.logger.error(`${NAME}: No API key provided for Real Favicon Generator.`);
 
                 return;
             }
@@ -61,7 +62,7 @@ module.exports = (options = {}) => {
                         }
                     } catch (error) {
                         if (error.code !== 'EEXIST') {
-                            config.logger.error(`vite-plugin-real-favicon: ${error.message}`);
+                            config.logger.error(`${NAME}: ${error.message}`);
 
                             return;
                         }
@@ -120,7 +121,7 @@ module.exports = (options = {}) => {
                     };
                 });
             } catch (error) {
-                config.logger.error(`vite-plugin-real-favicon: ${error.message}`);
+                config.logger.error(`${NAME}: ${error.message}`);
             }
         }
     };
