@@ -23,7 +23,7 @@ module.exports = (options = {}) => {
     let config,
         configContext;
 
-    options.cache = path.resolve(options.cache || '.cache/favicon');
+    options.cache = path.resolve(options.cache || 'node_modules/.vite/favicon');
 
     return {
         name: NAME,

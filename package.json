@@ -1,6 +1,6 @@
 {
   "name": "vitepack",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "🔄 Reasonable Vite config boilerplate.",
   "repository": "corneliusio/vitepack",
   "license": "MIT",

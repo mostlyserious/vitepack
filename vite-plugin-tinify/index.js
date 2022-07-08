@@ -14,7 +14,7 @@ module.exports = (options = {}) => {
         apikey,
         outputPath;
 
-    options.cache = path.resolve(options.cache || '.cache/tinify');
+    options.cache = path.resolve(options.cache || 'node_modules/.vite/tinify');
 
     return {
         name: NAME,
