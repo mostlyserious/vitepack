@@ -5,7 +5,6 @@ const { defineConfig } = require('vite');
 const tinify = require('./vite-plugin-tinify');
 const { default: svgo } = require('vite-svg-loader');
 const { default: eslint } = require('vite-plugin-eslint');
-const { default: restart } = require('vite-plugin-restart');
 const { default: devManifest } = require('vite-plugin-dev-manifest');
 const { svelte } = require('@sveltejs/vite-plugin-svelte');
 
@@ -37,7 +36,6 @@ module.exports = (args = {}, handler) => {
             outDir: args.outDir
         },
         plugins: [
-            restart({ restart: (args.watch ? args.watch : []) }),
             svgo({ defaultImport: 'url' }),
             devManifest(),
             eslint(),
