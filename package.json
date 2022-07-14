@@ -1,6 +1,6 @@
 {
   "name": "vitepack",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "🔄 Reasonable Vite config boilerplate.",
   "repository": "corneliusio/vitepack",
   "license": "MIT",
@@ -29,6 +29,7 @@
     "eslint-plugin-vue": "^9.2.0",
     "https": "^1.0.0",
     "rfg-api": "^0.5.2",
+    "tailwindcss-util": "ssh://git@github.com:mostlyserious/tailwindcss-util.git#0.1.0",
     "tinify": "^1.6.1",
     "vite": "^3.0.0",
     "vite-plugin-dev-manifest": "^1.0.7",
