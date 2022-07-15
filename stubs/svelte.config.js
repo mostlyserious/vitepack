@@ -5,7 +5,7 @@ const postcss = requireOptional('postcss');
 const postcssrc = postcssload(process.cwd());
 
 module.exports = {
-    vitePlugin: { emitCss: true },
+    vitePlugin: { emitCss: false },
     preprocess: {
         async style(input) {
             if (postcss && (input.attributes.type === 'text/postcss' || input.attributes.lang === 'postcss')) {

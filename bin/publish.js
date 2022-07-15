@@ -15,15 +15,20 @@ if (arg !== 'publish') {
     process.exit();
 }
 
-const paths = [
-    [ resolve(__dirname, '../stubs/.browserslistrc'), resolve(process.cwd(), '.browserslistrc') ],
-    [ resolve(__dirname, '../stubs/.env'), resolve(process.cwd(), '.env') ],
-    [ resolve(__dirname, '../stubs/.eslintrc.js'), resolve(process.cwd(), '.eslintrc.js') ],
-    [ resolve(__dirname, '../stubs/babel.config.js'), resolve(process.cwd(), 'babel.config.js') ],
-    [ resolve(__dirname, '../stubs/postcss.config.js'), resolve(process.cwd(), 'postcss.config.js') ],
-    [ resolve(__dirname, '../stubs/svelte.config.js'), resolve(process.cwd(), 'svelte.config.js') ],
-    [ resolve(__dirname, '../stubs/tailwind.config.js'), resolve(process.cwd(), 'tailwind.config.js') ]
+const files = [
+    '.browserslistrc',
+    '.env',
+    '.eslintrc.js',
+    'babel.config.js',
+    'postcss.config.js',
+    'svelte.config.js',
+    'tailwind.config.js',
+    'vite.config.js'
 ];
+
+const paths = files.map(filename => {
+    return [ resolve(__dirname, `../stubs/${filename}`), resolve(process.cwd(), filename) ];
+});
 
 for (const [ src, dest ] of paths) {
     const file = pc.green(relative(process.cwd(), dest));
