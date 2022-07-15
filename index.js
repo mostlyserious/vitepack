@@ -5,8 +5,8 @@ const { defineConfig } = require('vite');
 const tinify = require('./plugin/tinify');
 const { default: svgo } = require('vite-svg-loader');
 const { default: eslint } = require('vite-plugin-eslint');
-const { default: devManifest } = require('vite-plugin-dev-manifest');
 const { svelte } = require('@sveltejs/vite-plugin-svelte');
+const { default: devManifest } = require('vite-plugin-dev-manifest');
 
 const __home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 const pem = `${__home}/.config/valet/CA/LaravelValetCASelfSigned.pem`;
@@ -25,8 +25,8 @@ try {
 }
 
 module.exports = (args = {}, handler) => {
-    const HOST = process.env.APP_HOST;
-    const URL = process.env.APP_URL;
+    const APP_HOST = process.env.APP_HOST;
+    const APP_URL = process.env.APP_URL;
 
     return handler(defineConfig({
         base: args.base,
@@ -43,10 +43,10 @@ module.exports = (args = {}, handler) => {
             svelte()
         ],
         server: {
-            host: (HOST ? HOST : 'localhost'),
-            https: args.https ? args.https : (URL.includes('https:') && fs.existsSync(pem) ? {
-                key: fs.readFileSync(`${certDir}/${HOST}.key`),
-                cert: fs.readFileSync(`${certDir}/${HOST}.crt`),
+            host: (APP_HOST ? APP_HOST : 'localhost'),
+            https: args.https ? args.https : (APP_URL.includes('https:') && fs.existsSync(pem) ? {
+                key: fs.readFileSync(`${certDir}/${APP_HOST}.key`),
+                cert: fs.readFileSync(`${certDir}/${APP_HOST}.crt`),
                 ca: fs.readFileSync(pem)
             } : false)
         },

@@ -3,13 +3,13 @@ const { resolve, relative } = require('node:path');
 const { copyFile, constants } = require('node:fs');
 
 const [ arg ] = process.argv.splice(2);
-const warn = pc.yellow(`warn`);
-const error = pc.red(`error`);
-const info = pc.blue(`info`);
+const warn = pc.yellow('warn');
+const error = pc.red('error');
+const info = pc.blue('info');
 
-if (arg !== 'publish') {
+if (arg !== 'init') {
     console.error(`${error} Command "${arg}" not found.`);
-    console.log(`${info} There's really only one command right now… "publish".`);
+    console.log(`${info} There's really only one command right now… "init".`);
     console.log(`${info} This will stub out some build configuration files if they do not already exist.`);
 
     process.exit();

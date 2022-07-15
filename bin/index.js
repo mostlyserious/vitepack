@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-require('./publish');
+require('./init');
