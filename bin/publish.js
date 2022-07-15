@@ -15,18 +15,6 @@ if (arg !== 'publish') {
     process.exit();
 }
 
-const handler = err => {
-    const file = pc.green(relative(process.cwd(), err.dest));
-
-    if (err) {
-        console.warn(`${warn} ${file} already exists.`);
-
-        return;
-    }
-
-    console.log(`${info} ${file} added to project.`);
-};
-
 const paths = [
     [ resolve(__dirname, '../stubs/.browserslistrc'), resolve(process.cwd(), '.browserslistrc') ],
     [ resolve(__dirname, '../stubs/.env'), resolve(process.cwd(), '.env') ],
@@ -38,5 +26,13 @@ const paths = [
 ];
 
 for (const [ src, dest ] of paths) {
-    copyFile(src, dest, constants.COPYFILE_EXCL, handler);
+    const file = pc.green(relative(process.cwd(), dest));
+
+    copyFile(src, dest, constants.COPYFILE_EXCL, error => {
+        if (error) {
+            return console.warn(`${warn} ${file} already exists.`);
+        }
+
+        console.log(`${info} ${file} added to project.`);
+    });
 }
