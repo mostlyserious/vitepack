@@ -16,11 +16,15 @@ if (arg !== 'publish') {
 }
 
 const handler = err => {
-    if (err) {
-        const file = pc.green(relative(process.cwd(), err.dest));
+    const file = pc.green(relative(process.cwd(), err.dest));
 
+    if (err) {
         console.warn(`${warn} ${file} already exists.`);
+
+        return;
     }
+
+    console.log(`${info} ${file} added to project.`);
 };
 
 const paths = [
