@@ -3,6 +3,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const { defineConfig } = require('vite');
 const tinify = require('./plugin/tinify');
+const dotenvExpand = require('dotenv-expand');
 const { default: svgo } = require('vite-svg-loader');
 const { default: eslint } = require('vite-plugin-eslint');
 const { svelte } = require('@sveltejs/vite-plugin-svelte');
@@ -13,13 +14,7 @@ const pem = `${__home}/.config/valet/CA/LaravelValetCASelfSigned.pem`;
 const certDir = `${__home}/.config/valet/Certificates`;
 
 try {
-    const env = dotenv.config().parsed;
-
-    Object.keys(env).forEach(key => {
-        process.env[key] = env[key].replace(
-            /\$\{(.+)\}/gi, (original, a) => env[a]
-        );
-    });
+    dotenvExpand.expand(dotenv.config());
 } catch (error) {
     console.warn('No .env file');
 }
