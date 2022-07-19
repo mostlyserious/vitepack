@@ -1,19 +1,7 @@
 const pc = require('picocolors');
+const log = require('./util/log');
 const { resolve, relative } = require('node:path');
 const { copyFile, constants } = require('node:fs');
-
-const [ arg ] = process.argv.splice(2);
-const warn = pc.yellow('warn');
-const error = pc.red('error');
-const info = pc.blue('info');
-
-if (arg !== 'init') {
-    console.error(`${error} Command "${arg}" not found.`);
-    console.log(`${info} There's really only one command right now… "init".`);
-    console.log(`${info} This will stub out some build configuration files if they do not already exist.`);
-
-    process.exit();
-}
 
 const files = [
     '.browserslistrc',
@@ -26,18 +14,19 @@ const files = [
     'vite.config.js'
 ];
 
-const paths = files.map(filename => {
-    return [ resolve(__dirname, `../stubs/${filename}`), resolve(process.cwd(), filename) ];
-});
+const paths = files.map(filename => [
+    resolve(__dirname, `../stubs/${filename}`),
+    resolve(process.cwd(), filename)
+]);
 
 for (const [ src, dest ] of paths) {
     const file = pc.green(relative(process.cwd(), dest));
 
     copyFile(src, dest, constants.COPYFILE_EXCL, error => {
         if (error) {
-            return console.warn(`${warn} ${file} already exists.`);
+            return log.warn(`${file} already exists.`);
         }
 
-        console.log(`${info} ${file} added to project.`);
+        log.info(`${file} added to project.`);
     });
 }
