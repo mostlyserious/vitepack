@@ -7,7 +7,6 @@ const files = [
     '.browserslistrc',
     '.env',
     '.eslintrc.js',
-    'babel.config.js',
     'postcss.config.js',
     'svelte.config.js',
     'tailwind.config.js',
