@@ -1,10 +1,10 @@
 const plugin = require('tailwindcss/plugin');
 const typography = require('@tailwindcss/typography');
-const inset = require('tailwindcss-util/plugins/inset');
-const clamp = require('tailwindcss-util/plugins/clamp');
-const viewport = require('tailwindcss-util/plugins/viewport');
-const stateVariant = require('tailwindcss-util/state-variant');
-const textStroke = require('tailwindcss-util/plugins/text-stroke');
+const { inset } = require('@mostlyserious/tailwindcss-util');
+const { clamp } = require('@mostlyserious/tailwindcss-util');
+const { viewport } = require('@mostlyserious/tailwindcss-util');
+const { textStroke } = require('@mostlyserious/tailwindcss-util');
+const { stateVariant } = require('@mostlyserious/tailwindcss-util');
 
 module.exports = {
     content: [
@@ -22,6 +22,22 @@ module.exports = {
             'xl': '1280px',
             '2xl': '1536px'
         },
+        fontSize: {
+            '9xl': [ '8rem', '1' ],
+            '8xl': [ '6rem', '1' ],
+            '7xl': [ '4.5rem', '1' ],
+            '6xl': [ '3.75rem', '1' ],
+            '5xl': [ '3rem', '1' ],
+            '4xl': [ '2.25rem', '1.11' ],
+            '3xl': [ '1.875rem', '1.2' ],
+            '2xl': [ '1.5rem', '1.33' ],
+            'xl': [ '1.25rem', '1.4' ],
+            'lg': [ '1.125rem', '1.55' ],
+            'md': [ '1rem', '1.5' ],
+            'sm': [ '0.875rem', '1.43' ],
+            'xs': [ '0.75rem', '1.33' ],
+            '2xs': [ '0.66rem', '1.11' ]
+        },
         extend: {
             colors: {
                 brand: {
@@ -30,22 +46,6 @@ module.exports = {
             },
             fontFamily: {
 
-            },
-            fontSize: {
-                '9xl': [ '8rem', '1' ],
-                '8xl': [ '6rem', '1' ],
-                '7xl': [ '4.5rem', '1' ],
-                '6xl': [ '3.75rem', '1' ],
-                '5xl': [ '3rem', '1' ],
-                '4xl': [ '2.25rem', '1.11' ],
-                '3xl': [ '1.875rem', '1.2' ],
-                '2xl': [ '1.5rem', '1.33' ],
-                'xl': [ '1.25rem', '1.4' ],
-                'lg': [ '1.125rem', '1.55' ],
-                'base': [ '1rem', '1.5' ],
-                'sm': [ '0.875rem', '1.43' ],
-                'xs': [ '0.75rem', '1.33' ],
-                '2xs': [ '0.66rem', '1.11' ]
             },
             minHeight: theme => theme('height'),
             maxHeight: theme => theme('height'),

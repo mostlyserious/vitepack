@@ -1,5 +1,5 @@
-import vitepack from 'vitepack';
-// import realFavicon from 'vitepack/plugin/real-favicon';
+import vitepack from '@mostlyserious/vitepack';
+// import realFavicon from '@mostlyserious/vitepack/plugin/real-favicon';
 
 const args = {
     base: '/static/',
