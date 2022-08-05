@@ -39,7 +39,7 @@ module.exports = (args = {}, handler) => {
         ],
         server: {
             host: (APP_HOST ? APP_HOST : 'localhost'),
-            https: args.https ? args.https : (APP_URL.includes('https:') && fs.existsSync(pem) ? {
+            https: args.https !== undefined ? args.https : (APP_URL && APP_URL.includes('https:') && fs.existsSync(pem) ? {
                 key: fs.readFileSync(`${certDir}/${APP_HOST}.key`),
                 cert: fs.readFileSync(`${certDir}/${APP_HOST}.crt`),
                 ca: fs.readFileSync(pem)

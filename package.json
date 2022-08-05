@@ -1,8 +1,8 @@
 {
   "name": "@mostlyserious/vitepack",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "🔄 Reasonable Vite config boilerplate.",
-  "repository": "git@github.com:mostlyserious/vitepack.git",
+  "repository": "mostlyserious/vitepack",
   "license": "MIT",
   "main": "index.js",
   "author": {
