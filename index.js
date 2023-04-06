@@ -28,7 +28,8 @@ module.exports = (args = {}, handler) => {
         publicDir: (args.static ? args.static : false),
         build: {
             manifest: true,
-            outDir: args.outDir
+            outDir: args.outDir,
+            assetsInlineLimit: 0
         },
         plugins: [
             svgo({ defaultImport: 'url' }),
