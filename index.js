@@ -20,8 +20,8 @@ try {
 }
 
 module.exports = (args = {}, handler) => {
-    const APP_HOST = process.env.APP_HOST;
-    const APP_URL = process.env.APP_URL;
+    const VITEPACK_HOST = process.env.VITEPACK_HOST || process.env.APP_HOST;
+    const VITEPACK_URL = process.env.VITEPACK_URL || process.env.APP_URL;
 
     return handler(defineConfig({
         base: args.base,
@@ -39,10 +39,10 @@ module.exports = (args = {}, handler) => {
             svelte()
         ],
         server: {
-            host: (APP_HOST ? APP_HOST : 'localhost'),
-            https: args.https !== undefined ? args.https : (APP_URL && APP_URL.includes('https:') && fs.existsSync(pem) ? {
-                key: fs.readFileSync(`${certDir}/${APP_HOST}.key`),
-                cert: fs.readFileSync(`${certDir}/${APP_HOST}.crt`),
+            host: (VITEPACK_HOST ? VITEPACK_HOST : 'localhost'),
+            https: args.https !== undefined ? args.https : (VITEPACK_URL && VITEPACK_URL.includes('https:') && fs.existsSync(pem) ? {
+                key: fs.readFileSync(`${certDir}/${VITEPACK_HOST}.key`),
+                cert: fs.readFileSync(`${certDir}/${VITEPACK_HOST}.crt`),
                 ca: fs.readFileSync(pem)
             } : false)
         },
