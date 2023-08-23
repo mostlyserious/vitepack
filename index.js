@@ -1,13 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const dotenv = require('dotenv');
-const { defineConfig } = require('vite');
-const tinify = require('./plugin/tinify');
-const dotenvExpand = require('dotenv-expand');
-const { default: svgo } = require('vite-svg-loader');
-const { default: eslint } = require('vite-plugin-eslint');
-const { svelte } = require('@sveltejs/vite-plugin-svelte');
-const { default: devManifest } = require('vite-plugin-dev-manifest');
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
+import svgo from 'vite-svg-loader';
+import { defineConfig } from 'vite';
+import tinify from './plugin/tinify.js';
+import dotenvExpand from 'dotenv-expand';
+import eslint from 'vite-plugin-eslint';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
+import devManifest from 'vite-plugin-dev-manifest/dist/index.mjs';
 
 const __home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 const pem = `${__home}/.config/valet/CA/LaravelValetCASelfSigned.pem`;
@@ -19,7 +19,7 @@ try {
     console.warn('No .env file');
 }
 
-module.exports = (args = {}, handler) => {
+export default (args = {}, handler) => {
     const VITEPACK_HOST = process.env.VITEPACK_HOST || process.env.APP_HOST;
     const VITEPACK_URL = process.env.VITEPACK_URL || process.env.APP_URL;
 

@@ -6,7 +6,7 @@ const { copyFile, constants } = require('node:fs');
 const files = [
     '.browserslistrc',
     '.env',
-    '.eslintrc.js',
+    '.eslintrc.cjs',
     'postcss.config.js',
     'svelte.config.js',
     'tailwind.config.js',

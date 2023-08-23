@@ -1,13 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
-const tinify = require('tinify');
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
+import tinify from 'tinify';
 
 const __home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 const apikeypath = path.join(__home, '.tinypng');
 const NAME = 'tinify';
 
-module.exports = (options = {}) => {
+export default (options = {}) => {
     const regex = /\.(png|jpe?g)$/;
 
     let config,

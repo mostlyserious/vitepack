@@ -33,4 +33,4 @@ const plugins = {
     }
 };
 
-module.exports = { plugins };
+export default { plugins };
