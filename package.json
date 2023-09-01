@@ -1,6 +1,6 @@
 {
   "name": "@mostlyserious/vitepack",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "type": "module",
   "description": "🔄 Reasonable Vite config boilerplate.",
   "repository": "mostlyserious/vitepack",
@@ -36,6 +36,7 @@
     "eslint-plugin-vue": "^9.2.0",
     "https": "^1.0.0",
     "picocolors": "^1.0.0",
+    "postcss-load-config": "^4.0.1",
     "rfg-api": "^0.5.2",
     "svelte-preprocess": "^5.0.4",
     "tinify": "^1.6.1",
