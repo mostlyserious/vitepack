@@ -13,5 +13,19 @@ export default {
     },
     extends: [
         path.resolve(__dirname, 'eslintrc.json')
+    ],
+    plugins: [
+        'svelte',
+        'html'
+    ],
+    settings: {
+        'html/indent': '+4',
+        'html/html-extensions': [ '.html', '.twig', '.php' ]
+    },
+    overrides: [
+        {
+            files: [ '**/*.svelte' ],
+            parser: 'svelte-eslint-parser'
+        }
     ]
 };

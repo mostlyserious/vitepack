@@ -14,9 +14,17 @@
         "no-unmodified-loop-condition": 1,
         "no-useless-escape": 1,
         "array-bracket-spacing": [1, "always"],
-        "brace-style": [1, "1tbs"],
-        "camelcase": 1,
-        "comma-dangle": 1,
+        "brace-style": [ 1, "1tbs", { "allowSingleLine": true } ],
+        "camelcase": [ "warn", {
+            "properties": "never"
+        } ],
+        "comma-dangle": [ "warn", {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "never"
+        } ],
         "comma-spacing": 1,
         "comma-style": 1,
         "computed-property-spacing": 1,
@@ -49,7 +57,7 @@
                 "next": ["const", "let", "var"]
             }
         ],
-        "no-continue": 1,
+        "no-continue": "off",
         "no-lonely-if": 1,
         "no-mixed-operators": [1, {
             "groups": [
@@ -63,14 +71,11 @@
             "max": 1
         }],
         "no-tabs": 1,
+        "one-var": "off",
         "no-unneeded-ternary": 1,
         "no-whitespace-before-property": 1,
         "object-curly-spacing": [1, "always"],
         "one-var-declaration-per-line": 1,
-        "one-var": [1, {
-            "let": "always",
-            "const": "never"
-        }],
         "operator-linebreak": [1, "after", {
             "overrides": {
                 "?": "before",
@@ -111,12 +116,13 @@
         "template-curly-spacing": 1,
         "guard-for-in": 1,
         "eqeqeq": 1,
-        "no-unused-vars": [1, {
-            "args": "none"
-        }],
+        "no-unused-vars": [ "warn", {
+            "varsIgnorePattern": "^_",
+            "argsIgnorePattern": "^_"
+        } ],
         "no-undef": 2,
         "no-var": 1,
-        "semi": 1,
+        "semi": [ "warn", "never" ],
         "no-extra-semi": 1
     }
 }
