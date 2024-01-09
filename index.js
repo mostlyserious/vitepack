@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 import svgo from 'vite-svg-loader';
 import { defineConfig } from 'vite';
 import tinify from './plugin/tinify.js';
-import dotenvExpand from 'dotenv-expand';
 import eslint from 'vite-plugin-eslint';
+import dotenvExpand from 'dotenv-expand';
+import devManifest from 'vite-plugin-dev-manifest';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
-import devManifest from 'vite-plugin-dev-manifest/dist/index.mjs';
 
 const __home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 const pem = `${__home}/.config/valet/CA/LaravelValetCASelfSigned.pem`;
